@@ -8,7 +8,7 @@ export const profile = {
   phone: '+91 97409 66897',
   location: 'Bengaluru, India',
   // Replace these with your real profile URLs.
-  linkedin: 'www.linkedin.com/in/srilakshmi-seshadri-757515298',
+  linkedin: 'https://www.linkedin.com/in/srilakshmi-seshadri-757515298/',
   github: 'https://github.com/Srilakshmi1110',
   summary:
     'Final year CS Engineering student (CGPA 8.965) with hands-on experience in Machine Learning, Computer Vision, and full-stack AI deployment. Built production-ready ML systems achieving R²=0.96 and 95%+ accuracy. Developed a Transformer-based sports analytics system using MediaPipe, PyTorch, and FastAPI. TCS CodeVita Global Rank 7917.',
