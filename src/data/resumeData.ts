@@ -3,7 +3,7 @@
 
 export const profile = {
   name: 'Srilakshmi Seshadri',
-  title: 'Computer Science Engineer',
+  title: 'Computer Science Student | AI/ML & Software Development',
   email: 'srilakshmiseshadri04@gmail.com',
   phone: '+91 97409 66897',
   location: 'Bengaluru, India',
