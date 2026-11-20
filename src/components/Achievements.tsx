@@ -1,27 +1,55 @@
-import { Award } from 'lucide-react'
+
+import { Award, Trophy, GraduationCap } from 'lucide-react'
 import { achievements } from '../data/resumeData'
 
 export default function Achievements() {
   return (
-    <section id="achievements" className="max-w-6xl mx-auto px-6 py-24">
-      <p className="font-mono text-xs tracking-widest uppercase text-blueprint mb-2">
-        Recognition
-      </p>
-      <h2 className="font-display text-3xl font-semibold text-ink mb-10">
-        Certifications &amp; Achievements
-      </h2>
+    <section id="achievements" className="bg-paper border-y border-line py-24">
+      <div className="max-w-6xl mx-auto px-6">
 
-      <ul className="grid sm:grid-cols-2 gap-4">
-        {achievements.map((a) => (
-          <li
-            key={a}
-            className="flex items-start gap-3 rounded-xl border border-line bg-surface p-5"
-          >
-            <Award size={18} className="text-amber shrink-0 mt-0.5" />
-            <span className="text-sm text-ink leading-relaxed">{a}</span>
-          </li>
-        ))}
-      </ul>
+        <p className="font-mono text-xs tracking-widest uppercase text-blueprint mb-2">
+          Recognition & Learning
+        </p>
+
+        <h2 className="font-display text-3xl font-semibold text-ink mb-10">
+          Certifications & Achievements
+        </h2>
+
+        <div className="grid md:grid-cols-2 gap-5">
+
+          {achievements.map((item, index) => {
+            const isRank = item.includes('CodeVita')
+
+            return (
+              <div
+                key={index}
+                className="flex items-start gap-4 bg-white border border-line rounded-xl p-6 hover:border-blueprint transition-colors"
+              >
+                <div className="w-11 h-11 rounded-xl bg-blueprint/10 flex items-center justify-center shrink-0">
+                  {isRank ? (
+                    <Trophy className="text-blueprint" size={22} />
+                  ) : (
+                    <Award className="text-blueprint" size={22} />
+                  )}
+                </div>
+
+                <div>
+                  <h3 className="text-sm font-semibold text-ink leading-relaxed">
+                    {item}
+                  </h3>
+
+                  <p className="text-xs text-muted mt-2">
+                    {isRank
+                      ? 'Competitive Programming Achievement'
+                      : 'Certification'}
+                  </p>
+                </div>
+              </div>
+            )
+          })}
+
+        </div>
+      </div>
     </section>
   )
 }

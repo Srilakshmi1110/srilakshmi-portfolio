@@ -1,4 +1,5 @@
-import { Github, Maximize2 } from 'lucide-react'
+
+import { Github, Maximize2, CalendarDays } from 'lucide-react'
 import { useState } from 'react'
 import type { Project } from '../data/resumeData'
 import Modal from './Modal'
@@ -9,22 +10,39 @@ export default function ProjectCard({ project }: { project: Project }) {
   return (
     <>
       <article
-        className={`rounded-2xl border bg-surface transition-shadow flex flex-col ${
+        className={`rounded-2xl border bg-surface transition-all duration-300 flex flex-col hover:-translate-y-1 ${
           project.flagship
             ? 'border-amber/50 shadow-[0_1px_0_0_rgba(232,163,61,0.4)] md:col-span-2'
             : 'border-line hover:shadow-md'
         }`}
       >
         <div className="p-6 sm:p-8 flex flex-col flex-1">
+
           {project.flagship && (
-            <span className="inline-block w-fit font-mono text-[10px] uppercase tracking-wider text-amber bg-amber/10 rounded-full px-2.5 py-1 mb-4">
-              Flagship Project
+            <span className="inline-block w-fit font-mono text-[10px] uppercase tracking-wider text-amber bg-amber/10 rounded-full px-3 py-1 mb-4">
+              Featured Major Project
             </span>
+          )}
+
+          <div className="flex flex-wrap items-center gap-2 mb-3">
+            {project.period && (
+              <span className="inline-flex items-center gap-1.5 font-mono text-xs text-muted">
+                <CalendarDays size={13} />
+                {project.period}
+              </span>
+            )}
+          </div>
+
+          {project.subtitle && (
+            <p className="text-xs text-blueprint font-medium mb-3">
+              {project.subtitle}
+            </p>
           )}
 
           <h3 className="font-display text-xl sm:text-2xl font-semibold text-ink leading-snug">
             {project.title}
           </h3>
+
           <p className="mt-3 text-sm sm:text-base text-muted leading-relaxed">
             {project.description}
           </p>
@@ -60,8 +78,10 @@ export default function ProjectCard({ project }: { project: Project }) {
               onClick={() => setOpen(true)}
               className="inline-flex items-center gap-1.5 text-sm font-medium text-paper bg-ink rounded-full px-4 py-2 hover:bg-blueprint transition-colors"
             >
-              <Maximize2 size={14} /> View Details
+              <Maximize2 size={14} />
+              View Details
             </button>
+
             {project.github && (
               <a
                 href={project.github}
@@ -69,7 +89,8 @@ export default function ProjectCard({ project }: { project: Project }) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-sm font-medium text-muted hover:text-ink transition-colors"
               >
-                <Github size={16} /> GitHub
+                <Github size={16} />
+                GitHub
               </a>
             )}
           </div>
@@ -79,15 +100,26 @@ export default function ProjectCard({ project }: { project: Project }) {
       {open && (
         <Modal onClose={() => setOpen(false)}>
           <div className="p-6 sm:p-8">
+
             {project.flagship && (
-              <span className="inline-block w-fit font-mono text-[10px] uppercase tracking-wider text-amber bg-amber/10 rounded-full px-2.5 py-1 mb-4">
-                Flagship Project
+              <span className="inline-block font-mono text-[10px] uppercase tracking-wider text-amber bg-amber/10 rounded-full px-3 py-1 mb-4">
+                Featured Major Project
               </span>
             )}
+
+            <p className="font-mono text-xs text-muted mb-3">
+              {project.period}
+            </p>
 
             <h3 className="font-display text-2xl sm:text-3xl font-semibold text-ink leading-snug pr-8">
               {project.title}
             </h3>
+
+            {project.subtitle && (
+              <p className="text-sm text-blueprint mt-2">
+                {project.subtitle}
+              </p>
+            )}
 
             <p className="mt-4 text-base text-muted leading-relaxed">
               {project.description}
@@ -109,20 +141,27 @@ export default function ProjectCard({ project }: { project: Project }) {
             )}
 
             <h4 className="font-mono text-[11px] uppercase tracking-wider text-amber mt-6 mb-3">
-              How it was built
+              Project Contributions
             </h4>
+
             <ul className="space-y-3">
               {project.highlights.map((h, i) => (
-                <li key={i} className="text-sm sm:text-base text-ink leading-relaxed flex gap-3">
-                  <span className="text-amber font-mono text-xs mt-1">›</span>
+                <li
+                  key={i}
+                  className="text-sm sm:text-base text-ink leading-relaxed flex gap-3"
+                >
+                  <span className="text-amber font-mono text-xs mt-1">
+                    ›
+                  </span>
                   <span>{h}</span>
                 </li>
               ))}
             </ul>
 
             <h4 className="font-mono text-[11px] uppercase tracking-wider text-amber mt-7 mb-3">
-              Tech stack
+              Technologies Used
             </h4>
+
             <div className="flex flex-wrap gap-2">
               {project.tech.map((t) => (
                 <span
@@ -141,9 +180,11 @@ export default function ProjectCard({ project }: { project: Project }) {
                 rel="noopener noreferrer"
                 className="mt-8 inline-flex items-center gap-2 bg-ink text-paper text-sm font-medium rounded-full px-5 py-2.5 hover:bg-blueprint transition-colors"
               >
-                <Github size={16} /> View Repository
+                <Github size={16} />
+                View Repository
               </a>
             )}
+
           </div>
         </Modal>
       )}
